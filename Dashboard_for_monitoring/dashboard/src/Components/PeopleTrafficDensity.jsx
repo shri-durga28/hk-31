@@ -56,7 +56,7 @@ const TrafficDensityMap = () => {
   return (
     <div className="w-full p-4 rounded-lg shadow-lg bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
       <h2 className="text-lg font-medium uppercase tracking-[0.4rem] mb-4 text-center">
-        Live Traffic Density at Durgai Amman Temple
+        Live Traffic Density
       </h2>
 
       {/* Map Display */}

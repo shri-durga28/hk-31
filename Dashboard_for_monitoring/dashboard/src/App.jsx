@@ -1,24 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './Components/Home/HomePage';
-import NotFoundPage from './Components/Home/NotFoundPage';
-import Dashboard from './Components/Dashboard';
 import LanguageSelectionPage from './Components/Home/LanguageSelection';
+import Dashboard from './Components/Dashboard'; // Import the Dashboard component
 
-function App() {
+const App = () => {
   return (
-    <>    
     <Router>
       <Routes>
+        {/* Route for Home Page */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        {/* Add more routes here as needed */}
-        <Route path="*" element={<NotFoundPage />} /> {/* Catch-all route for 404 */}
+
+        {/* Route for Language Selection Page */}
+        <Route path="/language-selection" element={<LanguageSelectionPage />} />
+
+        {/* Route for Dashboard */}
+        <Route path="/dashboard" element={<Dashboard />} /> {/* Add this line */}
       </Routes>
     </Router>
-    </>
-
   );
-}
+};
 
 export default App;

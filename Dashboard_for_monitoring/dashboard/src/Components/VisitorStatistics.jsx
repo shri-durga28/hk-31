@@ -40,10 +40,51 @@ const VisitorStatistics = () => {
         label: 'Visitor Statistics',
         data: generateVisitorData(7),
         fill: false,
-        borderColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgba(255,165,0,1)', // Variant of orange
+        tension: 0.1,
       },
     ],
   });
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          color: 'white',
+        },
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        titleColor: 'white',
+        bodyColor: 'white',
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: 'white',
+        },
+        grid: {
+          color: 'rgba(255,255,255,0.2)',
+        },
+      },
+      y: {
+        ticks: {
+          color: 'white',
+        },
+        grid: {
+          color: 'rgba(255,255,255,0.2)',
+        },
+      },
+    },
+    elements: {
+      line: {
+        borderColor: 'rgba(255,165,0,1)', // Variant of orange
+        backgroundColor: 'transparent',
+      },
+    },
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,7 +99,8 @@ const VisitorStatistics = () => {
             label: 'Visitor Statistics',
             data: newVisitorData,
             fill: false,
-            borderColor: 'rgba(75,192,192,1)',
+            borderColor: 'rgba(255,165,0,1)', // Variant of orange
+            tension: 0.1,
           },
         ],
       });
@@ -67,7 +109,7 @@ const VisitorStatistics = () => {
     return () => clearInterval(interval);
   }, [data.datasets[0].data]);
 
-  return <Line data={data} />;
+  return <Line data={data} options={options} />;
 };
 
 export default VisitorStatistics;

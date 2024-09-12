@@ -1,19 +1,19 @@
 import React from 'react';
-import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
+import { Box, Grid, Card, CardContent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header'; // Assuming you have a common Header component
 
 // Sample monuments images - replace these with actual image paths
 const languages = [
-  { name: 'English', imgSrc: '/english.jpg', route: '/dashboard/en' },
-  { name: 'தமிழ்', imgSrc: '/tamil.jpg', route: '/dashboard/ta' },
+  { name: 'English', imgSrc: '/english.jpg', route: '/dashboard' }, // Change the route here
+  { name: 'தமிழ்', imgSrc: '/tamilnadu.jpg', route: '/dashboard/ta' },
   { name: 'తెలుగు', imgSrc: '/telugu.jpg', route: '/dashboard/te' },
   { name: 'മലയാളം', imgSrc: '/malayalam.jpg', route: '/dashboard/ml' },
   { name: 'ಕನ್ನಡ', imgSrc: '/kannada.jpg', route: '/dashboard/kn' },
   { name: 'हिन्दी', imgSrc: '/marathi.jpg', route: '/dashboard/hi' },
   { name: 'मराठी', imgSrc: '/hindi.jpg', route: '/dashboard/mr' },
   { name: 'ગુજરાતી', imgSrc: '/gujarati.jpg', route: '/dashboard/gu' },
-  { name: 'বাংলা', imgSrc: '/bengali.jpg', route: '/dashboard/bn' },
+  { name: 'বাংলা', imgSrc: '/bengali.jpeg', route: '/dashboard/bn' },
 ];
 
 const LanguageSelectionPage = () => {
@@ -67,10 +67,11 @@ const LanguageSelectionPage = () => {
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'flex-end', // Move content lower
           alignItems: 'center',
           height: '100vh',
           textAlign: 'center',
+          paddingBottom: '40px', // Add padding to lower the card
         }}
       >
         {/* Card with title */}
@@ -78,19 +79,19 @@ const LanguageSelectionPage = () => {
           sx={{
             backgroundColor: 'rgba(0, 0, 0, 0.4)', // Semi-transparent black card
             color: 'white',
-            padding: '24px',
+            padding: '16px', // Reduced padding
             borderRadius: '16px',
             width: '80%',
-            maxWidth: '1200px',
+            maxWidth: '1000px', // Reduced max width
           }}
         >
           <CardContent>
-            <Typography variant="h4" fontWeight="bold" marginBottom="24px">
+            <h5 className="uppercase tracking-[0.4rem] text-xl" style={{ marginBottom: '16px', color: 'white', fontWeight: 'medium' }}>
               Select Your Language
-            </Typography>
+            </h5>
 
             {/* Grid of Circular Language Icons */}
-            <Grid container spacing={4} justifyContent="center">
+            <Grid container spacing={3} justifyContent="center">
               {languages.map((language, index) => (
                 <Grid item xs={12} sm={4} md={3} key={index}>
                   <Box
@@ -108,20 +109,20 @@ const LanguageSelectionPage = () => {
                   >
                     <Box
                       sx={{
-                        width: 120,
-                        height: 120,
+                        width: 90, // Reduced image size
+                        height: 90, // Reduced image size
                         borderRadius: '50%',
                         overflow: 'hidden',
-                        marginBottom: '12px',
+                        marginBottom: '8px',
                         border: '3px solid white',
                         backgroundImage: `url(${language.imgSrc})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                       }}
                     />
-                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>
+                    <p style={{ color: 'white', fontWeight: 'bold' }}>
                       {language.name}
-                    </Typography>
+                    </p>
                   </Box>
                 </Grid>
               ))}

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import TemperatureAndHumidityMonitoring from './TemperatureAndHumidityMonitoring';
 import VisitorStatistics from './VisitorStatistics';
 import 'tailwindcss/tailwind.css';
 import StructuralVibrationMonitoring from './StructuralVibrationMonitoring';
+import TrafficDensityMap from './PeopleTrafficDensity';
+import CustomTempleMap from './CustomTempleMap';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material'; // Importing the arrow icon
 
 // Function to calculate the age of the temple
 const calculateTempleAge = () => {
@@ -31,14 +35,15 @@ const isTempleOpen = () => {
 
 // Reusable StatCard Component for Consistent UI
 const StatCard = ({ title, value, color }) => (
-  <div className="p-6 bg-white shadow-lg rounded-lg flex-1 min-w-[200px]">
-    <h3 className="text-lg uppercase tracking-widest font-medium">{title}</h3>
-    <p className={`text-3xl ${color} mt-2`}>{value}</p>
+  <div className={`p-6 rounded-2xl shadow-lg flex-1 min-w-[200px] ${color}`}>
+    <h3 className="text-base uppercase tracking-wide text-white">{title}</h3>
+    <p className="text-4xl text-white mt-2 font-semibold">{value}</p>
   </div>
 );
 
 // Main Dashboard Component
 const Dashboard = () => {
+  const navigate = useNavigate();
   const templeAge = calculateTempleAge();
   const currentDate = getCurrentDate();
   const airQualityIndex = 17; // Hardcoded AQI value
@@ -46,60 +51,71 @@ const Dashboard = () => {
   const isOpen = isTempleOpen(); // Dynamic temple status
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-blue-900 text-white h-full fixed">
-        <div className="p-5">
-          <h2 className="text-2xl font-medium uppercase tracking-[0.4rem]">Monument Monitoring</h2>
-        </div>
-        <ul>
-          <li className="p-4 hover:bg-blue-800">Dashboard</li>
-          <li className="p-4 hover:bg-blue-800">Temperature & Humidity</li>
-          <li className="p-4 hover:bg-blue-800">Air Quality Index</li>
-          <li className="p-4 hover:bg-blue-800">Vibration</li>
-        </ul>
-      </aside>
+    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/background1.jpg')" }}>
+      {/* Dark overlay for better contrast */}
+      <div className="min-h-screen bg-black bg-opacity-50 flex">
+        {/* Back to Home Button */}
+        <button
+          onClick={() => navigate('/')}
+          className="absolute top-4 left-4 flex items-center text-white hover:font-bold"
+        >
+          <ArrowBack />
+          <span className="ml-2">Back to Home</span>
+        </button>
 
-      {/* Main Content */}
-      <main className="ml-64 p-6">
-        {/* Header */}
-        <header className="flex justify-between items-center p-4 bg-white shadow-lg rounded-lg mb-6">
-          <h1 className="text-xl font-medium uppercase tracking-[0.4rem]">Monitoring Dashboard</h1>
-          <div className="flex items-center space-x-4">
-            <span>Hi! User</span>
-            <img src="/icon.png" alt="Profile" className="w-10 h-10 rounded-full" />
-          </div>
-        </header>
+        {/* Main Content */}
+        <main className="flex-1 p-10 space-y-8 bg-white/20 backdrop-blur-lg rounded-lg">
+          {/* Header */}
+          <header className="flex justify-between items-center p-6 bg-white/30 backdrop-blur-lg rounded-lg shadow-md">
+            <h1 className="text-2xl font-semibold tracking-widest text-white">Monitoring Dashboard</h1>
+            <div className="flex items-center space-x-4">
+              <span className="text-white">Hi! User</span>
+              <img src="/icon.png" alt="Profile" className="w-10 h-10 rounded-full" />
+            </div>
+          </header>
 
-        {/* Date, Temple Age, and Open Status */}
-        <section className="flex flex-wrap gap-6 mb-6">
-          <StatCard title="Today's Date" value={currentDate} color="text-blue-600" />
-          <StatCard title="Age of the Temple" value={`${templeAge} years`} color="text-green-600" />
-          <StatCard title="Temple Open Status" value={isOpen ? 'Open' : 'Closed'} color={isOpen ? 'text-green-600' : 'text-red-600'} />
-          <StatCard title="Temple Condition Index" value={`${templeConditionIndex} / 100`} color="text-yellow-600" />
-        </section>
+          {/* Date, Temple Age, and Open Status */}
+          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <StatCard title="Today's Date" value={currentDate} color="bg-yellow-600" /> {/* Warm Yellow */}
+            <StatCard title="Age of the Temple" value={`${templeAge} years`} color="bg-orange-600" /> {/* Deep Orange */}
+            <StatCard title="Temple Open Status" value={isOpen ? 'Open' : 'Closed'} color={isOpen ? 'bg-green-600' : 'bg-red-600'} /> {/* Open: Green, Closed: Red */}
+            <StatCard title="Temple Condition Index" value={`${templeConditionIndex} / 100`} color="bg-amber-700" /> {/* Amber */}
+          </section>
 
-        {/* Stats Cards */}
-        <section className="flex flex-wrap gap-6 mb-6">
-          <StatCard title="Total Visitors" value="1259" color="text-blue-600" />
-          <StatCard title="Air Quality Index (AQI)" value={airQualityIndex} color="text-green-600" />
-        </section>
+          {/* Stats Cards */}
+          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <StatCard title="Total Visitors" value="1259" color="bg-amber-900" /> {/* Brown */}
+            <StatCard title="Air Quality Index (AQI)" value={airQualityIndex} color="bg-orange-500" /> {/* Burnt Orange */}
+          </section>
 
-        {/* Temperature and Humidity Monitoring */}
-        <TemperatureAndHumidityMonitoring />
+          {/* Temperature and Humidity Monitoring */}
+          <TemperatureAndHumidityMonitoring />
 
-        {/* Visitor Statistics */}
-        <section className="mt-8">
-          <h2 className="text-xl font-medium uppercase tracking-[0.4rem] mb-4">Visitor Statistics</h2>
-          <VisitorStatistics />
-        </section>
+          {/* Visitor Statistics */}
+          <section className="mt-8">
+            <h2 className="text-xl font-medium uppercase tracking-widest mb-4 text-white">Visitor Statistics</h2>
+            <VisitorStatistics />
+          </section>
 
-        {/* Vibration Monitoring */}
-        <section className="mt-8">
-          <h2 className="text-xl font-medium uppercase tracking-[0.4rem] mb-4">Structural Vibration Monitoring</h2>
-          <StructuralVibrationMonitoring />
-        </section>
-      </main>
+          {/* Vibration Monitoring */}
+          <section className="mt-8">
+            <h2 className="text-xl font-medium uppercase tracking-widest mb-4 text-white">Structural Vibration Monitoring</h2>
+            <StructuralVibrationMonitoring />
+          </section>
+
+          {/* Traffic Density Map */}
+          <section className="mt-8">
+            <h2 className="text-xl font-medium uppercase tracking-widest mb-4 text-white">Traffic Density Map</h2>
+            <TrafficDensityMap />
+          </section>
+
+          {/* Temple Location */}
+          <section className="mt-8">
+            <h2 className="text-xl font-medium uppercase tracking-widest mb-4 text-white">Temple Location</h2>
+            <CustomTempleMap />
+          </section>
+        </main>
+      </div>
     </div>
   );
 };

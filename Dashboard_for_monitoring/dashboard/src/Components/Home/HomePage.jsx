@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, IconButton, Card, CardContent } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TourIcon from '@mui/icons-material/Tour';
 import InsightsIcon from '@mui/icons-material/Insights';
@@ -8,18 +9,17 @@ import WarningIcon from '@mui/icons-material/Warning';
 import TicketIcon from '@mui/icons-material/ConfirmationNumber';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Header from './Header';
-import { useNavigate } from 'react-router-dom';
 
 // Icon Button with animation effects
 const AnimatedIconButton = ({ icon, label, onClick }) => (
   <Box display="flex" flexDirection="column" alignItems="center">
     <motion.div
-      whileHover={{ scale: 1.2 }} // Hover animation
-      whileTap={{ scale: 0.9 }}   // Tap animation
-      transition={{ type: 'spring', stiffness: 200, damping: 10 }} // Bouncy animation
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 0.9 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 10 }}
     >
       <IconButton
-        onClick={onClick} // Added onClick handler
+        onClick={onClick}  // Trigger the onClick function (for navigation)
         sx={{
           backgroundColor: 'black',
           color: 'white',
@@ -40,19 +40,18 @@ const AnimatedIconButton = ({ icon, label, onClick }) => (
 );
 
 const HomePage = () => {
+  const navigate = useNavigate();  // Initialize useNavigate
+
   const images = ['/tajmahal.jpg', '/varanasi.jpg', '/bhootnath.jpg', '/virupaksha.jpg'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  // For routing
-  const navigate = useNavigate(); // Hook to navigate between routes
 
   // Change image every 5 seconds
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, [images.length]);
 
   return (
@@ -73,8 +72,8 @@ const HomePage = () => {
           width: '100%',
           height: '100%',
           display: 'flex',
-          transition: 'transform 1s ease-in-out', // Smooth sliding effect
-          transform: `translateX(-${currentImageIndex * 100}%)`, // Slide effect
+          transition: 'transform 1s ease-in-out',
+          transform: `translateX(-${currentImageIndex * 100}%)`,
         }}
       >
         {images.map((image, index) => (
@@ -99,19 +98,19 @@ const HomePage = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.6)', // Black overlay with opacity
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
           zIndex: 0,
         }}
       />
 
       {/* Header Component */}
-      <Header /> {/* Adding the Header component here */}
+      <Header />
 
       {/* Card with Text and Icons */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }} // Initial state: faded out and shifted down
-        animate={{ opacity: 1, y: 0 }}  // Final state: fully visible and at the right position
-        transition={{ duration: 1, ease: 'easeOut' }} // Animation duration and easing
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
         style={{
           zIndex: 1,
           position: 'relative',
@@ -126,23 +125,22 @@ const HomePage = () => {
           height="100vh"
           textAlign="center"
         >
-          {/* Card with Black Overlay */}
           <Card
             sx={{
-              backgroundColor: 'rgba(0, 0, 0, 0.4)', // Semi-transparent black card
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
               color: 'white',
               padding: '24px',
               borderRadius: '16px',
-              width: '80%', // Adjust card width as needed
-              maxWidth: '1200px', // Maximum width for responsiveness
+              width: '80%',
+              maxWidth: '1200px',
             }}
           >
             <CardContent>
               <h1 className="uppercase text-4xl font-poppins tracking-[0.4rem]" style={{ fontWeight: 'medium', marginBottom: '10px' }}>
-              Heritage Sentinel System
+                Heritage Sentinel System
               </h1>
               <h2 className="text-center text-sm uppercase tracking-[0.4rem] font-medium">
-              Revolutionizing Monument Protection
+                Revolutionizing Monument Protection
               </h2>
 
               {/* Icon Buttons Grid */}
@@ -150,8 +148,8 @@ const HomePage = () => {
                 <Grid item xs={12} sm={4} display="flex" justifyContent="center">
                   <AnimatedIconButton 
                     icon={<DashboardIcon />} 
-                    label="Dashboard"
-                    onClick={() => navigate('/language-selection')} // Navigate to Language Selection page
+                    label="Dashboard" 
+                    onClick={() => navigate('/language-selection')}  // Navigate to LanguageSelectionPage
                   />
                 </Grid>
                 <Grid item xs={12} sm={4} display="flex" justifyContent="center">
@@ -175,7 +173,6 @@ const HomePage = () => {
         </Box>
       </motion.div>
     </Box>
-    
   );
 };
 

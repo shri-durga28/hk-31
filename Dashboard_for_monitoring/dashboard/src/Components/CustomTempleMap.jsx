@@ -2,8 +2,8 @@ import React from 'react';
 import { MapContainer, TileLayer, Polygon, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Define the coordinates for the new location and features
-const newLocation = [12.9479, 80.1378]; // Coordinates for No 55, Station Road, Chromepet, Chennai
+// Define the coordinates for Durgai Amman Temple and features
+const templeLocation = [12.9479, 80.1378]; // Coordinates for the Durgai Amman Temple in Chromepet, Chennai
 
 const templeBounds = [
   [12.9481, 80.1380],
@@ -22,10 +22,10 @@ const CustomTempleMap = () => {
   return (
     <div className="w-full p-4 bg-gray-100 rounded-lg shadow-lg">
       <h2 className="text-lg font-medium uppercase tracking-[0.4rem] mb-4 text-center">
-        Virtual Map 
+        Location Map
       </h2>
 
-      <MapContainer center={newLocation} zoom={18} style={{ height: '500px', width: '100%' }}>
+      <MapContainer center={templeLocation} zoom={18} style={{ height: '500px', width: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; OpenStreetMap contributors"
