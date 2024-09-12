@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';  // Import Framer Motion components
-import logo from '/logo.png';
+import logo from '/eclipse.svg';
 import './Header.css';
 
 const Header = () => {
@@ -24,7 +24,7 @@ const Header = () => {
                 {/* Logo */}
                 <div className='md:static'>
                     <motion.img 
-                        className="h-16 w-28"
+                        className="h-18 w-28"
                         src={logo} 
                         alt="Logo" 
                         initial={{ opacity: 0, y: -20 }}  // Slide in effect
