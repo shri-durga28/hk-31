@@ -1,0 +1,51 @@
+/* Basic styling for the booking system */
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background-image: url('https://example.com/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero-section h1 {
+    font-weight: bold;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+}
+
+/* List Cards */
+.card {
+    border: none;
+}
+
+.card img {
+    border-radius: 8px;
+}
+
+#bus-list, #train-list {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 15px;
+}
+
+/* Navbar */
+.navbar {
+    padding: 1rem 2rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        padding: 100px 0;
+    }
+}

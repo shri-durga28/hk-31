@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">TravelBooking</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Bus Booking -->
+    <section class="hero-section d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="display-4">Book Your Bus Trip</h1>
+            <p class="lead">Find your bus and travel in comfort</p>
+
+            <!-- Bus Search Form -->
+            <form id="bus-search-form" class="row g-3 justify-content-center">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="busFromLocation" placeholder="From" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="busToLocation" placeholder="To" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="date" class="form-control" id="busTravelDate" required>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="busPassengers" required>
+                        <option value="1">1 Passenger</option>
+                        <option value="2">2 Passengers</option>
+                        <option value="3">3 Passengers</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Bus List Section -->
+    <section class="container my-5" id="bus-list">
+        <h2 class="text-center mb-4">Available Buses</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="busResults"></div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bus-script.js"></script>
+</body>
+</html>
